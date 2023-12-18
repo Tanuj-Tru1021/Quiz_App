@@ -7,6 +7,7 @@ import LoginMobile from './Screens/LoginMobile'
 import LoginOTP from './Screens/LoginOTP'
 import LoginDetails from './Screens/LoginDetails'
 import LoginConfirmation from './Screens/LoginConfirmation'
+import HomePage from './Screens/HomePage'
 
 const Stack = createStackNavigator()
 
@@ -22,6 +23,7 @@ const Navigator = () => {
                 <Stack.Screen name='LoginOTP' component={LoginOTP} />
                 <Stack.Screen name='LoginDetails' component={LoginDetails} />
                 <Stack.Screen name='LoginConfirmation' component={LoginConfirmation} />
+                <Stack.Screen name='HomePage' component={HomePage} />
             </Stack.Navigator>
         </NavigationContainer>
     )
