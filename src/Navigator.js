@@ -8,6 +8,9 @@ import LoginOTP from './Screens/LoginOTP'
 import LoginDetails from './Screens/LoginDetails'
 import LoginConfirmation from './Screens/LoginConfirmation'
 import HomePage from './Screens/HomePage'
+import AllQuizes from './Screens/AllQuizes'
+import QuizScreen from './Screens/QuizScreen'
+import Leaderboard from './Screens/Leaderboard'
 
 const Stack = createStackNavigator()
 
@@ -24,6 +27,9 @@ const Navigator = () => {
                 <Stack.Screen name='LoginDetails' component={LoginDetails} />
                 <Stack.Screen name='LoginConfirmation' component={LoginConfirmation} />
                 <Stack.Screen name='HomePage' component={HomePage} />
+                <Stack.Screen name='AllQuizes' component={AllQuizes} />
+                <Stack.Screen name='QuizScreen' component={QuizScreen} />
+                <Stack.Screen name='Leaderboard' component={Leaderboard} />
             </Stack.Navigator>
         </NavigationContainer>
     )

@@ -7,8 +7,9 @@ import leaderBoard2 from '../../assets/leaderboard-2.png'
 import leaderBoard3 from '../../assets/leaderboard-3.png'
 import CountdownTimer from '../Components/CountdownTimer'
 import QuizCard from '../Components/QuizCard'
+import BarGraph from '../Components/BarGraph'
 
-const HomePage = () => {
+const HomePage = ({ navigation }) => {
     return (
         <ScrollView>
             <View style={{ flex: 1, backgroundColor: '#0000001A' }}>
@@ -88,7 +89,7 @@ const HomePage = () => {
                         <Text style={{ fontSize: 12, fontWeight: 500, color: '#374259' }}>
                             Leaderboard
                         </Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('Leaderboard')}>
                             <Text style={{ fontSize: 12, fontWeight: 400, color: '#374259' }}>
                                 View full {`>`}
                             </Text>
@@ -128,13 +129,15 @@ const HomePage = () => {
                     <Text style={{ fontSize: 12, fontWeight: 500, color: '#374259' }}>
                         Quizes
                     </Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        navigation.navigate('AllQuizes')
+                    }}>
                         <Text style={{ fontSize: 12, fontWeight: 400, color: '#374259' }}>
                             View All {`>`}
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <QuizCard />
+                <QuizCard onPress={() => navigation.navigate('QuizScreen')} />
                 <View style={{ marginVertical: 25, marginHorizontal: 8, padding: 15, backgroundColor: 'white', borderRadius: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <Text style={{ fontSize: 12, color: '#374259', fontWeight: 400 }}>
@@ -155,6 +158,7 @@ const HomePage = () => {
                         </Text>
                     </TouchableOpacity>
                 </View>
+                {/* <BarGraph /> */}
             </View>
         </ScrollView>
     )

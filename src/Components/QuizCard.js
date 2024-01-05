@@ -3,7 +3,7 @@ import React from 'react'
 import ratingStar from '../../assets/rating-star.png'
 import Science from '../../assets/science-image.png'
 
-const QuizCard = () => {
+const QuizCard = ({ onPress }) => {
     return (
         <View style={{ marginHorizontal: 8, marginTop: 10, padding: 15, backgroundColor: 'white', borderRadius: 10 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
@@ -36,7 +36,10 @@ const QuizCard = () => {
                         </Text>
                     </View>
                 </View>
-                <TouchableOpacity style={{ paddingHorizontal: 20, backgroundColor: '#93AADA', justifyContent: 'center', alignItems: 'center', height: 25, borderRadius: 5, marginTop: 15 }}>
+                <TouchableOpacity 
+                style={{ paddingHorizontal: 20, backgroundColor: '#93AADA', justifyContent: 'center', alignItems: 'center', height: 25, borderRadius: 5, marginTop: 15 }}
+                onPress={onPress}
+                >
                     <Text style={{ fontSize: 12, color: 'white' }}>
                         Play Now
                     </Text>

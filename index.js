@@ -5,6 +5,7 @@
 import {AppRegistry} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
-import HomePage from './src/Screens/HomePage';
+import QuizScreen from './src/Screens/QuizScreen';
+import Leaderboard from './src/Screens/Leaderboard';
 
-AppRegistry.registerComponent(appName, () => HomePage);
+AppRegistry.registerComponent(appName, () => App);
