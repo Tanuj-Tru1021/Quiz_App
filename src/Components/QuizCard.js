@@ -1,9 +1,25 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useRef } from 'react'
+import { Modalize } from 'react-native-modalize'
 import ratingStar from '../../assets/rating-star.png'
 import Science from '../../assets/science-image.png'
 
 const QuizCard = ({ onPress }) => {
+
+    const modalRef = useRef(null)
+
+    const openModal = () => {
+        if (modalRef.current) {
+            modalRef.current.open();
+        }
+    }
+
+    const closeModal = () => {
+        if (modalRef.current) {
+            modalRef.current.close();
+        }
+    }
+
     return (
         <View style={{ marginHorizontal: 8, marginTop: 10, padding: 15, backgroundColor: 'white', borderRadius: 10 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
@@ -36,15 +52,31 @@ const QuizCard = ({ onPress }) => {
                         </Text>
                     </View>
                 </View>
-                <TouchableOpacity 
-                style={{ paddingHorizontal: 20, backgroundColor: '#93AADA', justifyContent: 'center', alignItems: 'center', height: 25, borderRadius: 5, marginTop: 15 }}
-                onPress={onPress}
+                <TouchableOpacity
+                    style={{ paddingHorizontal: 20, backgroundColor: '#93AADA', justifyContent: 'center', alignItems: 'center', height: 25, borderRadius: 5, marginTop: 15 }}
+                    onPress={onPress}
                 >
                     <Text style={{ fontSize: 12, color: 'white' }}>
                         Play Now
                     </Text>
                 </TouchableOpacity>
             </View>
+            <Modalize
+                ref={modalRef}
+                scrollViewProps={{ showsVerticalScrollIndicator: false }}
+                modalHeight={500}
+                handlePosition="hidden"
+            >
+                <View style={{ padding: 20 }}>
+                    <Text style={{ fontSize: 20, fontWeight: 'bold', marginTop: 10 }}>
+                        Quiz Rules
+                    </Text>
+                    {/* Add your quiz rules or content here */}
+                    <Text style={{ marginTop: 10 }}>
+                        These are the rules for the quiz...
+                    </Text>
+                </View>
+            </Modalize>
         </View>
     )
 }
