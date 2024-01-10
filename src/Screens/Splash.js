@@ -1,6 +1,7 @@
 import { View, Text, ImageBackground, TouchableOpacity } from 'react-native'
 import React, { useEffect } from 'react'
 import backgroundImage from '../../assets/splash-screen.png'
+import { splashStyles } from '../Styles/SplashStyles'
 
 const Splash = ({ navigation }) => {
     const handle = () => {
@@ -11,19 +12,13 @@ const Splash = ({ navigation }) => {
             <ImageBackground
                 source={backgroundImage}
                 resizeMode="cover"
-                style={{ flex: 1, justifyContent: 'center', position: 'relative' }}
+                style={splashStyles.backgroundImage}
             />
             <TouchableOpacity
-                style={{
-                    paddingVertical: 15, width: '50%',
-                    justifyContent: 'center', alignItems: 'center',
-                    position: 'absolute', bottom: 68,
-                    backgroundColor: '#6989CC',
-                    alignSelf: 'center', borderRadius: 10
-                }}
+                style={splashStyles.getStartedButton}
                 onPress={handle}
             >
-                <Text style={{ fontSize: 16, fontWeight: 500, color: 'white' }}>
+                <Text style={splashStyles.getStartedText}>
                     Get Started
                 </Text>
             </TouchableOpacity>

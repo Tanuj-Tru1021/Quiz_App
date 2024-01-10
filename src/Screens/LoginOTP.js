@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import backgroundImage from '../../assets/splash-screen.png'
 import headerImage from '../../assets/header-image.png'
 import OTPInput from '../Components/OtpBox'
+import { otpStyles } from '../Styles/OtpStyles'
 
 const LoginOTP = ({ navigation }) => {
 
@@ -15,20 +16,20 @@ const LoginOTP = ({ navigation }) => {
             <ImageBackground
                 source={backgroundImage}
                 resizeMode="cover"
-                style={{ flex: 1, justifyContent: 'center', position: 'relative' }}
+                style={otpStyles.backgroundImage}
             />
-            <View style={{ position: 'absolute', right: -40, top: -15 }}>
+            <View style={otpStyles.topImage}>
                 <Image source={headerImage} />
             </View>
-            <View style={{ position: 'absolute', bottom: -85, left: -40 }}>
+            <View style={otpStyles.bottomImage}>
                 <Image source={headerImage} />
             </View>
-            <View style={{ position: 'absolute', top: 150, padding: 20 }}>
-                <Text style={{ fontSize: 20, fontWeight: 500, color: 'white' }}>
+            <View style={otpStyles.otpContainer}>
+                <Text style={otpStyles.initialText}>
                     Verify your{"\n"}
                     Mobile Number ?
                 </Text>
-                <Text style={{ fontSize: 10, fontWeight: 400, color: 'white', marginTop: 10 }}>
+                <Text style={otpStyles.otpHeader}>
                     Enter the code we’ve sent by text to +916393642919
                 </Text>
                 <View style={{ left: -5, marginTop: 45 }}>
@@ -41,19 +42,13 @@ const LoginOTP = ({ navigation }) => {
                 </View>
             </View>
             <TouchableOpacity
-                style={{
-                    paddingVertical: 15, width: '60%',
-                    justifyContent: 'center', alignItems: 'center',
-                    position: 'absolute', bottom: 85,
-                    backgroundColor: disable ? '#C4C4C4' : '#6989CC',
-                    alignSelf: 'center', borderRadius: 10
-                }}
+                style={otpStyles.continueButton}
                 onPress={() => {
                     navigation.navigate('LoginDetails')
                 }}
                 disabled={disable}
             >
-                <Text style={{ fontSize: 16, fontWeight: 500, color: 'white' }}>
+                <Text style={otpStyles.continueText}>
                     Continue
                 </Text>
             </TouchableOpacity>

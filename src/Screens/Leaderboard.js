@@ -7,13 +7,14 @@ import profilePicture from '../../assets/profile-pic.png'
 import ratingStar from '../../assets/rating-star.png'
 import leaderBoard2 from '../../assets/leaderboard-2.png'
 import leaderBoard3 from '../../assets/leaderboard-3.png'
+import { leaderboardStyles } from '../Styles/LeaderboardStyles'
 
 const Tab = createMaterialTopTabNavigator()
 
 const Header = ({ onPress }) => (
-    <View style={{ paddingHorizontal: 20, paddingTop: 20, backgroundColor: '#ffffff' }}>
+    <View style={leaderboardStyles.headerContainer}>
         <TouchableOpacity onPress={onPress}>
-            <Text style={{ fontSize: 20, fontWeight: 500, color: '#374259' }}>
+            <Text style={leaderboardStyles.headerText}>
                 {'< quiz'}
             </Text>
         </TouchableOpacity>
@@ -22,19 +23,22 @@ const Header = ({ onPress }) => (
 
 const Card = ({ rank, score }) => (
     <View>
-        <View style={{ backgroundColor: '#ffffff', padding: 13, borderRadius: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 5 }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Text style={{ fontSize: 12, fontWeight: 500, color: '#000000' }}>
+        <View style={leaderboardStyles.cardContainer}>
+            <View style={leaderboardStyles.cardInsideView}>
+                <Text style={leaderboardStyles.rankText}>
                     {rank}
                 </Text>
-                <View style={{ flexDirection: 'row', marginLeft: 40, alignItems: 'center' }}>
-                    <Image source={Teacher} style={{ height: 24, width: 24, borderRadius: 12, marginRight: 15 }} />
-                    <Text style={{ fontSize: 12, fontWeight: 500, color: '#000000' }}>
+                <View style={leaderboardStyles.cardDetailsView}>
+                    <Image
+                        source={Teacher}
+                        style={leaderboardStyles.cardDetailsImage}
+                    />
+                    <Text style={leaderboardStyles.cardDetailsText}>
                         Demo
                     </Text>
                 </View>
             </View>
-            <Text style={{ fontSize: 12, fontWeight: 500, color: '#000000' }}>
+            <Text style={leaderboardStyles.cardScore}>
                 {score}
             </Text>
         </View>
@@ -48,35 +52,38 @@ const cardData = {
 
 const AllTime = () => (
     <ScrollView>
-        <View style={{ flex: 1, marginHorizontal: 8, marginTop: 20 }}>
-            <View style={{ backgroundColor: '#374259', padding: 13, borderRadius: 6, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+        <View style={leaderboardStyles.allTimeRankContainer}>
+            <View style={leaderboardStyles.yourRankContainer}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Text style={{ fontSize: 10, fontWeight: 500, color: '#ffffff' }}>
+                    <Text style={leaderboardStyles.yourRankText}>
                         3
                     </Text>
-                    <View style={{ flexDirection: 'row', marginLeft: 40, alignItems: 'center' }}>
-                        <Image source={Teacher} style={{ height: 24, width: 24, borderRadius: 12, marginRight: 15 }} />
-                        <Text style={{ fontSize: 10, fontWeight: 500, color: '#ffffff' }}>
+                    <View style={leaderboardStyles.yourRankDetailsContainer}>
+                        <Image
+                            source={Teacher}
+                            style={leaderboardStyles.yourRankImage}
+                        />
+                        <Text style={leaderboardStyles.youText}>
                             You
                         </Text>
                     </View>
                 </View>
-                <Text style={{ fontSize: 10, fontWeight: 500, color: '#ffffff' }}>
+                <Text style={leaderboardStyles.yourRankScore}>
                     285
                 </Text>
             </View>
-            <View style={{ backgroundColor: '#ffffff', padding: 14, borderRadius: 10 }}>
-                <View style={{ backgroundColor: '#F7F7F7', borderRadius: 10, paddingHorizontal: 30, paddingVertical: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+            <View style={leaderboardStyles.leadersContainer}>
+                <View style={leaderboardStyles.leadersInsideView}>
                     <View style={{ marginTop: 10 }}>
                         <Image
                             source={leaderBoard2}
-                            style={{ width: 55, height: 55, marginRight: 45 }}
+                            style={leaderboardStyles.imageRiya}
                         />
-                        <Text style={{ fontSize: 12, color: '#374259', fontWeight: 400, marginLeft: 15, marginTop: 10 }}>
+                        <Text style={leaderboardStyles.riyaText}>
                             Riya
                         </Text>
-                        <View style={{ flexDirection: 'row', marginTop: 8, alignItems: 'center', marginLeft: 10 }}>
-                            <Text style={{ fontSize: 15, fontWeight: 500, color: '#394257' }}>
+                        <View style={leaderboardStyles.leadersScoreContainer}>
+                            <Text style={leaderboardStyles.leadersScore}>
                                 500
                             </Text>
                             <Image
@@ -88,13 +95,13 @@ const AllTime = () => (
                     <View style={{ top: -12 }}>
                         <Image
                             source={profilePicture}
-                            style={{ width: 70, height: 70, marginRight: 45, borderRadius: 35, borderWidth: 4, borderColor: '#F3AE3D' }}
+                            style={leaderboardStyles.kuldeepImage}
                         />
-                        <Text style={{ fontSize: 12, color: '#374259', fontWeight: 400, marginLeft: 17, marginTop: 10 }}>
+                        <Text style={leaderboardStyles.kuldeepText}>
                             Kuldeep
                         </Text>
-                        <View style={{ flexDirection: 'row', marginTop: 8, alignItems: 'center', marginLeft: 17 }}>
-                            <Text style={{ fontSize: 15, fontWeight: 500, color: '#394257' }}>
+                        <View style={leaderboardStyles.leadersScoreContainer}>
+                            <Text style={leaderboardStyles.leadersScore}>
                                 500
                             </Text>
                             <Image
@@ -106,13 +113,13 @@ const AllTime = () => (
                     <View style={{ top: 15 }}>
                         <Image
                             source={leaderBoard3}
-                            style={{ width: 45, height: 45, marginRight: 45 }}
+                            style={leaderboardStyles.imageKaran}
                         />
-                        <Text style={{ fontSize: 12, color: '#374259', fontWeight: 400, marginLeft: 10, marginTop: 10 }}>
+                        <Text style={leaderboardStyles.karanText}>
                             Karan
                         </Text>
-                        <View style={{ flexDirection: 'row', marginTop: 8, alignItems: 'center', marginLeft: 10 }}>
-                            <Text style={{ fontSize: 15, fontWeight: 500, color: '#394257' }}>
+                        <View style={leaderboardStyles.leadersScoreContainer}>
+                            <Text style={leaderboardStyles.leadersScore}>
                                 500
                             </Text>
                             <Image
