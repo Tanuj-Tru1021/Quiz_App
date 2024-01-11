@@ -16,7 +16,11 @@ const LoginOTP = ({ navigation }) => {
             <ImageBackground
                 source={backgroundImage}
                 resizeMode="cover"
-                style={otpStyles.backgroundImage}
+                style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    position: 'relative'
+                }}
             />
             <View style={otpStyles.topImage}>
                 <Image source={headerImage} />
@@ -42,7 +46,17 @@ const LoginOTP = ({ navigation }) => {
                 </View>
             </View>
             <TouchableOpacity
-                style={otpStyles.continueButton}
+                style={{
+                    paddingVertical: 15,
+                    width: '60%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    position: 'absolute',
+                    bottom: 85,
+                    backgroundColor: disable ? '#C4C4C4' : '#6989CC',
+                    alignSelf: 'center',
+                    borderRadius: 10
+                }}
                 onPress={() => {
                     navigation.navigate('LoginDetails')
                 }}

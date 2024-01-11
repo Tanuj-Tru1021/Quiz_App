@@ -32,17 +32,6 @@ const otpStyles = StyleSheet.create({
         color: 'white',
         marginTop: 10
     },
-    continueButton: {
-        paddingVertical: 15,
-        width: '60%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'absolute',
-        bottom: 85,
-        backgroundColor: disable ? '#C4C4C4' : '#6989CC',
-        alignSelf: 'center',
-        borderRadius: 10
-    },
     continueText: {
         fontSize: 16,
         fontWeight: 500,

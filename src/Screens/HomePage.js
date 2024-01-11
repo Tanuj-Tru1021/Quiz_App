@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import headerImage from '../../assets/header-image.png'
 import profilePicture from '../../assets/profile-pic.png'
 import ratingStar from '../../assets/rating-star.png'
@@ -9,8 +9,30 @@ import CountdownTimer from '../Components/CountdownTimer'
 import QuizCard from '../Components/QuizCard'
 import BarGraph from '../Components/BarGraph'
 import {homeStyles} from '../Styles/HomeStyles'
+import { QuestionContext } from '../Constants/ApiContext'
+import axios from 'axios'
 
 const HomePage = ({ navigation }) => {
+
+    const [data, setData] = useState([])
+    const fetchData = async () => {
+        console.log("yessssss11111111")
+        try {
+            const url = 'http://quiz-app-dev-env.eba-fvnk6fkv.ap-south-1.elasticbeanstalk.com/api/v1//quiz/659dcce9592b8846dbe81b27/6575effc13906711ea001bed'
+            const response = await axios.get(url)
+            console.log("yesssssssss")
+            setData(response.quiz)
+            // console.log(data)
+        } catch (error) {
+            console.log("Error", error)
+        }
+    }
+
+    useEffect(() => {
+        fetchData()
+        console.log("yessss")
+    }, [])
+    
     return (
         <ScrollView>
             <View style={homeStyles.container}>

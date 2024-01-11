@@ -1,0 +1,156 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "quiz-app",
+    "dateExported": "2024-01-09T23:34:34.791Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "e2c085f9-fe16-45ff-a3e5-2f90ba199c1e",
+            "name": "teachers",
+            "containerId": "",
+            "created": "2023-12-09T17:23:53.009Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "f16bccaa-9c39-4420-9daf-aceaea8692f0",
+            "name": "quiz",
+            "containerId": "",
+            "created": "2024-01-09T21:17:32.351Z",
+            "sortNum": 20000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "a588f9bf-06dc-4f02-87e6-bd94d62434e8",
+            "colId": "5fe0fe15-ee78-4e1f-b108-d7f0ba163388",
+            "containerId": "e2c085f9-fe16-45ff-a3e5-2f90ba199c1e",
+            "name": "add teacher",
+            "url": "http://127.0.0.1:8000/api/v1/teachers",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-07-29T20:18:35.994Z",
+            "modified": "2023-12-10T16:40:31.075Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"first_name\": \"Yash\",\n    \"last_name\": \"Singalkar\",\n    \"email\": \"yashsingalkar@gmail.com\",\n    \"phone\": \"8805684638\",\n    \"subjects\": {\n    \"CS EET\": [\n        \"Business Communication\",\n        \"Current Affairs\",\n        \"Legal Aptitude\",\n        \"Logical Reasoning\",\n        \"Economics\",\n        \"Business Environment\"\n    ],\n    \"CS Executive\": [],\n    \"CS Professional\": []\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "c23ddd6b-cc11-4e40-b8f7-4780f7aaa99c",
+            "colId": "5fe0fe15-ee78-4e1f-b108-d7f0ba163388",
+            "containerId": "e2c085f9-fe16-45ff-a3e5-2f90ba199c1e",
+            "name": "update teacher",
+            "url": "http://127.0.0.1:8000/api/v1/teachers/6575effc13906711ea001be",
+            "method": "PUT",
+            "sortNum": 15000,
+            "created": "2023-12-10T17:34:09.793Z",
+            "modified": "2023-12-10T17:45:37.651Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"first_name\": \"Yash\",\n    \"last_name\": \"Singalkar\",\n    \"email\": \"yashsingalkar@gmail.com\",\n    \"phone\": \"8805684639\",\n    \"subjects\": {\n    \"CS EET\": [\n        \"Business Communication\",\n        \"Current Affairs\",\n        \"Legal Aptitude\",\n        \"Logical Reasoning\",\n        \"Economics\",\n        \"Business Environment\"\n    ],\n    \"CS Executive\": [],\n    \"CS Professional\": []\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "c72d0305-009b-4ea9-8e2f-157c913ccc64",
+            "colId": "5fe0fe15-ee78-4e1f-b108-d7f0ba163388",
+            "containerId": "e2c085f9-fe16-45ff-a3e5-2f90ba199c1e",
+            "name": "get all teachers",
+            "url": "http://127.0.0.1:8000/api/v1/teachers",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-12-10T16:34:46.415Z",
+            "modified": "2023-12-10T16:35:10.825Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "b5c0ed32-654d-4699-95d9-562514c48ffa",
+            "colId": "5fe0fe15-ee78-4e1f-b108-d7f0ba163388",
+            "containerId": "e2c085f9-fe16-45ff-a3e5-2f90ba199c1e",
+            "name": "get teacher",
+            "url": "http://127.0.0.1:8000/api/v1/teachers/6575effc13906711ea001bed",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-12-10T17:09:05.761Z",
+            "modified": "2023-12-10T17:21:56.182Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "1badd732-d845-4134-a77f-1759946f032c",
+            "colId": "5fe0fe15-ee78-4e1f-b108-d7f0ba163388",
+            "containerId": "f16bccaa-9c39-4420-9daf-aceaea8692f0",
+            "name": "add quiz",
+            "url": "http://127.0.0.1:8000/api/v1/quiz",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-01-09T21:17:44.503Z",
+            "modified": "2024-01-09T23:12:41.192Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"name\": \"Quiz1\",\n    \"type\": \"Live\",\n    \"programmes\": [\"CS EET\"],\n    \"duration\": \"01:00\",\n    \"start_time\": \"2024-01-11 03:47:00+00:00\",\n    \"end_time\": \"2024-01-11 04:53:00+00:00\",\n    \"quiz\": {\n  \"CS EET\": {\n    \"Business Communication\": [\n      {\n        \"question\": \"Question 1\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\", \"Option 4\"],\n        \"answer\": \"Option 1\"\n      },\n      {\n        \"question\": \"Question 2\",\n        \"options\": [\n          \"Option 1\",\n          \"Option 2\",\n          \"Option 3\",\n          \"Option 4\",\n          \"Option 5\"\n        ],\n        \"answer\": \"Option 2\"\n      },\n      {\n        \"question\": \"Question 3\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\"],\n        \"answer\": \"Option 3\"\n      }\n    ],\n    \"Current Affairs\": [\n      {\n        \"question\": \"Question 1\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\", \"Option 4\"],\n        \"answer\": \"Option 1\"\n      },\n      {\n        \"question\": \"Question 2\",\n        \"options\": [\n          \"Option 1\",\n          \"Option 2\",\n          \"Option 3\",\n          \"Option 4\",\n          \"Option 5\"\n        ],\n        \"answer\": \"Option 2\"\n      },\n      {\n        \"question\": \"Question 3\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\"],\n        \"answer\": \"Option 3\"\n      }\n    ],\n    \"Legal Aptitude\": [\n      {\n        \"question\": \"Question 1\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\", \"Option 4\"],\n        \"answer\": \"Option 1\"\n      },\n      {\n        \"question\": \"Question 2\",\n        \"options\": [\n          \"Option 1\",\n          \"Option 2\",\n          \"Option 3\",\n          \"Option 4\",\n          \"Option 5\"\n        ],\n        \"answer\": \"Option 2\"\n      },\n      {\n        \"question\": \"Question 3\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\"],\n        \"answer\": \"Option 3\"\n      }\n    ],\n    \"Logical Reasoning\": [\n      {\n        \"question\": \"Question 1\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\", \"Option 4\"],\n        \"answer\": \"Option 1\"\n      },\n      {\n        \"question\": \"Question 2\",\n        \"options\": [\n          \"Option 1\",\n          \"Option 2\",\n          \"Option 3\",\n          \"Option 4\",\n          \"Option 5\"\n        ],\n        \"answer\": \"Option 2\"\n      },\n      {\n        \"question\": \"Question 3\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\"],\n        \"answer\": \"Option 3\"\n      }\n    ],\n    \"Economics\": [\n      {\n        \"question\": \"Question 1\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\", \"Option 4\"],\n        \"answer\": \"Option 1\"\n      },\n      {\n        \"question\": \"Question 2\",\n        \"options\": [\n          \"Option 1\",\n          \"Option 2\",\n          \"Option 3\",\n          \"Option 4\",\n          \"Option 5\"\n        ],\n        \"answer\": \"Option 2\"\n      },\n      {\n        \"question\": \"Question 3\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\"],\n        \"answer\": \"Option 3\"\n      }\n    ],\n    \"Business Environment\": [\n      {\n        \"question\": \"Question 1\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\", \"Option 4\"],\n        \"answer\": \"Option 1\"\n      },\n      {\n        \"question\": \"Question 2\",\n        \"options\": [\n          \"Option 1\",\n          \"Option 2\",\n          \"Option 3\",\n          \"Option 4\",\n          \"Option 5\"\n        ],\n        \"answer\": \"Option 2\"\n      },\n      {\n        \"question\": \"Question 3\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\"],\n        \"answer\": \"Option 3\"\n      }\n    ]\n  }\n},\n    \"icon\": \"globe\",\n    \"teacher_id\": \"6575effc13906711ea001bed\",\n    \"draft\": true\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "970089fc-99e6-4b0d-9988-0c2e4dc2151b",
+            "colId": "5fe0fe15-ee78-4e1f-b108-d7f0ba163388",
+            "containerId": "f16bccaa-9c39-4420-9daf-aceaea8692f0",
+            "name": "get quizzes by teacher",
+            "url": "http://127.0.0.1:8000/api/v1/quiz/6575effc3906711ea001bed",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-01-09T22:41:38.446Z",
+            "modified": "2024-01-09T22:48:19.925Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "cb4c4d7e-b8d0-4cfc-8077-5e54849d861e",
+            "colId": "5fe0fe15-ee78-4e1f-b108-d7f0ba163388",
+            "containerId": "f16bccaa-9c39-4420-9daf-aceaea8692f0",
+            "name": "get quiz",
+            "url": "http://127.0.0.1:8000/api/v1/quiz/659dcce9592b8846dbe81b27/6575effc13906711ea001bed",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-01-09T22:51:21.343Z",
+            "modified": "2024-01-09T22:59:37.110Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5c0c4314-181a-45af-8d85-7e94fcb9298e",
+            "colId": "5fe0fe15-ee78-4e1f-b108-d7f0ba163388",
+            "containerId": "f16bccaa-9c39-4420-9daf-aceaea8692f0",
+            "name": "update quiz",
+            "url": "http://127.0.0.1:8000/api/v1/quiz/659dd3299d0fa3834d5748f0",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2024-01-09T23:00:24.005Z",
+            "modified": "2024-01-09T23:33:32.947Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"name\": \"Quiz1\",\n    \"type\": \"Live\",\n    \"programmes\": [\"CS EET\"],\n    \"duration\": \"01:00\",\n    \"start_time\": \"2024-01-11 03:47:00+00:00\",\n    \"end_time\": \"\",\n    \"icon\": \"globe\",\n    \"teacher_id\": \"6575effc13906711ea001bed\",\n    \"draft\": false,\n    \"quiz\": {\n  \"CS EET\": {\n    \"Business Communication\": [\n      {\n        \"question\": \"Question 1\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\", \"Option 4\"],\n        \"answer\": \"Option 1\"\n      },\n      {\n        \"question\": \"Question 2\",\n        \"options\": [\n          \"Option 1\",\n          \"Option 2\",\n          \"Option 3\",\n          \"Option 4\",\n          \"Option 5\"\n        ],\n        \"answer\": \"Option 2\"\n      },\n      {\n        \"question\": \"Question 3\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\"],\n        \"answer\": \"Option 3\"\n      }\n    ],\n    \"Current Affairs\": [\n      {\n        \"question\": \"Question 1\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\", \"Option 4\"],\n        \"answer\": \"Option 1\"\n      },\n      {\n        \"question\": \"Question 2\",\n        \"options\": [\n          \"Option 1\",\n          \"Option 2\",\n          \"Option 3\",\n          \"Option 4\",\n          \"Option 5\"\n        ],\n        \"answer\": \"Option 2\"\n      },\n      {\n        \"question\": \"Question 3\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\"],\n        \"answer\": \"Option 3\"\n      }\n    ],\n    \"Legal Aptitude\": [\n      {\n        \"question\": \"Question 1\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\", \"Option 4\"],\n        \"answer\": \"Option 1\"\n      },\n      {\n        \"question\": \"Question 2\",\n        \"options\": [\n          \"Option 1\",\n          \"Option 2\",\n          \"Option 3\",\n          \"Option 4\",\n          \"Option 5\"\n        ],\n        \"answer\": \"Option 2\"\n      },\n      {\n        \"question\": \"Question 3\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\"],\n        \"answer\": \"Option 3\"\n      }\n    ],\n    \"Logical Reasoning\": [\n      {\n        \"question\": \"Question 1\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\", \"Option 4\"],\n        \"answer\": \"Option 1\"\n      },\n      {\n        \"question\": \"Question 2\",\n        \"options\": [\n          \"Option 1\",\n          \"Option 2\",\n          \"Option 3\",\n          \"Option 4\",\n          \"Option 5\"\n        ],\n        \"answer\": \"Option 2\"\n      },\n      {\n        \"question\": \"Question 3\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\"],\n        \"answer\": \"Option 3\"\n      }\n    ],\n    \"Economics\": [\n      {\n        \"question\": \"Question 1\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\", \"Option 4\"],\n        \"answer\": \"Option 1\"\n      },\n      {\n        \"question\": \"Question 2\",\n        \"options\": [\n          \"Option 1\",\n          \"Option 2\",\n          \"Option 3\",\n          \"Option 4\",\n          \"Option 5\"\n        ],\n        \"answer\": \"Option 2\"\n      },\n      {\n        \"question\": \"Question 3\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\"],\n        \"answer\": \"Option 3\"\n      }\n    ],\n    \"Business Environment\": [\n      {\n        \"question\": \"Question 1\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\", \"Option 4\"],\n        \"answer\": \"Option 1\"\n      },\n      {\n        \"question\": \"Question 2\",\n        \"options\": [\n          \"Option 1\",\n          \"Option 2\",\n          \"Option 3\",\n          \"Option 4\",\n          \"Option 5\"\n        ],\n        \"answer\": \"Option 2\"\n      },\n      {\n        \"question\": \"Question 3\",\n        \"options\": [\"Option 1\", \"Option 2\", \"Option 3\"],\n        \"answer\": \"Option 3\"\n      }\n    ]\n  }\n}\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
