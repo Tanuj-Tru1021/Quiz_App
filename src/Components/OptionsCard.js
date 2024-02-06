@@ -10,7 +10,7 @@ const OptionsCard = ({ disabled, option, answer, onPress }) => {
         onPress()
     }
 
-    const optionColor = optionSelect ? (value ? 'green' : 'red') : '#F2F2F2'
+    const optionColor = optionSelect ? (value ? '#C3EDBF' : 'red') : '#F2F2F2'
     return (
         <TouchableOpacity
             style={{ paddingVertical: 12, paddingLeft: 12, backgroundColor: optionColor, marginBottom: 15, borderRadius: 10 }}

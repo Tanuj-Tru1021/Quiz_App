@@ -12,6 +12,8 @@ import AllQuizes from './Screens/AllQuizes'
 import QuizScreen from './Screens/QuizScreen'
 import Leaderboard from './Screens/Leaderboard'
 import { QuestionProvider } from './Constants/ApiContext'
+import Result from './Screens/Result'
+import ProfileScreen from './Screens/ProfileScreen'
 
 const Stack = createStackNavigator()
 
@@ -32,6 +34,8 @@ const Navigator = () => {
                     <Stack.Screen name='AllQuizes' component={AllQuizes} />
                     <Stack.Screen name='QuizScreen' component={QuizScreen} />
                     <Stack.Screen name='Leaderboard' component={Leaderboard} />
+                    <Stack.Screen name='Result' component={Result} />
+                    <Stack.Screen name='ProfileScreen' component={ProfileScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
         </QuestionProvider>

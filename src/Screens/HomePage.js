@@ -1,46 +1,54 @@
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, useRef } from 'react'
 import headerImage from '../../assets/header-image.png'
 import profilePicture from '../../assets/profile-pic.png'
 import ratingStar from '../../assets/rating-star.png'
 import leaderBoard2 from '../../assets/leaderboard-2.png'
 import leaderBoard3 from '../../assets/leaderboard-3.png'
+import Teacher from '../../assets/teachers/teacher2.jpeg'
 import CountdownTimer from '../Components/CountdownTimer'
 import QuizCard from '../Components/QuizCard'
-import BarGraph from '../Components/BarGraph'
-import {homeStyles} from '../Styles/HomeStyles'
+import { homeStyles } from '../Styles/HomeStyles'
 import { QuestionContext } from '../Constants/ApiContext'
 import axios from 'axios'
+import { Modalize } from 'react-native-modalize'
 
 const HomePage = ({ navigation }) => {
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState({})
+    const bottomsheetRef = useRef(null)
+
+    const onOpen = () => {
+        if (bottomsheetRef.current) {
+            bottomsheetRef.current.open()
+        }
+    }
     const fetchData = async () => {
-        console.log("yessssss11111111")
         try {
-            const url = 'http://quiz-app-dev-env.eba-fvnk6fkv.ap-south-1.elasticbeanstalk.com/api/v1//quiz/659dcce9592b8846dbe81b27/6575effc13906711ea001bed'
+            const url = 'http://development.eba-btffzym2.ap-south-1.elasticbeanstalk.com/api/v1/quiz/659dcce9592b8846dbe81b27/6575effc13906711ea001bed'
+            // const url = 'http://quiz-app-dev-env.eba-fvnk6fkv.ap-south-1.elasticbeanstalk.com/api/v1/quiz/659dcce9592b8846dbe81b27/6575effc13906711ea001bed'
             const response = await axios.get(url)
-            console.log("yesssssssss")
-            setData(response.quiz)
-            // console.log(data)
+            setData(response.data)
         } catch (error) {
             console.log("Error", error)
         }
+        console.log(data)
     }
 
     useEffect(() => {
         fetchData()
-        console.log("yessss")
     }, [])
-    
+
     return (
         <ScrollView>
             <View style={homeStyles.container}>
                 <View style={homeStyles.firstBlock}>
-                    <Image
-                        source={profilePicture}
-                        style={homeStyles.profilePicture}
-                    />
+                    <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
+                        <Image
+                            source={profilePicture}
+                            style={homeStyles.profilePicture}
+                        />
+                    </TouchableOpacity>
                     <View style={{ marginTop: 30, width: '100%' }}>
                         <View style={homeStyles.insideView1}>
                             <Text style={homeStyles.beginnerText}>
@@ -63,13 +71,24 @@ const HomePage = ({ navigation }) => {
                     </View>
                 </View>
                 <View style={homeStyles.secondBlock}>
-                    <View style={{ marginRight: 10, width: '65%' }}>
+                    <View style={{ width: '65%' }}>
                         <Text style={homeStyles.aboutText}>
                             About Yes Academy
                         </Text>
                         <Text style={homeStyles.descriptionText}>
                             Adv. Chirag Chotrani is a young yet experienced faculty in the field of Law. From being the topper of his batch, to creating many All India Rankers in the Field of Company Secretary, Chirag has proved his academic capabilities time and again….
                         </Text>
+                    </View>
+                    <View>
+                        <Image
+                            source={Teacher}
+                            style={{ height: 60, width: 50, alignSelf: 'flex-end' }}
+                        />
+                        <TouchableOpacity style={{ backgroundColor: '#93AADA', paddingVertical: 4, paddingHorizontal: 6, borderRadius: 5, marginTop: 5 }}>
+                            <Text style={{ color: '#ffffff', fontWeight: 500 }}>
+                                Learn More
+                            </Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <View style={homeStyles.thirdBlock}>
@@ -160,7 +179,67 @@ const HomePage = ({ navigation }) => {
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <QuizCard onPress={() => navigation.navigate('QuizScreen')} />
+
+                <QuizCard onPress={onOpen} />
+
+                <Modalize
+                    ref={bottomsheetRef}
+                    adjustToContentHeight
+                    handlePosition='inside'
+                    onOverlayPress={() => bottomsheetRef.current.close()}
+                >
+                    <View style={{ ...homeStyles.bottomSheetContainer }}>
+                        <Text style={{ ...homeStyles.bottomSheetHeader }}>
+                            QUIZ RULES
+                        </Text>
+                        <View style={{ ...homeStyles.pointsContainer }}>
+                            <Image source={ratingStar} />
+                            <Text style={{ ...homeStyles.pointsText }}>
+                                Points
+                            </Text>
+                        </View>
+                        <Text style={{ ...homeStyles.bottomSheetSubText }}>
+                            For each correct answer you are given 3 points. Point’s add up and increase your level.
+                        </Text>
+                        <View style={{ ...homeStyles.lifelinesContainer }}>
+                            <View style={{ ...homeStyles.pollsIconContainer }}>
+                                <Text style={{ ...homeStyles.lifelineIcon }}>
+                                    P
+                                </Text>
+                            </View>
+                            <Text style={{ ...homeStyles.lifelineText }}>
+                                Poll
+                            </Text>
+                        </View>
+                        <Text style={{ ...homeStyles.bottomSheetSubText }}>
+                            Allows you to get hint from the other player poll, allowed once per quiz
+                        </Text>
+                        <View style={{ ...homeStyles.lifelinesContainer }}>
+                            <View style={{ ...homeStyles.fiftyFiftyIconContainer }}>
+                                <Text style={{ ...homeStyles.lifelineIcon }}>
+                                    F
+                                </Text>
+                            </View>
+                            <Text style={{ ...homeStyles.lifelineText }}>
+                                50:50
+                            </Text>
+                        </View>
+                        <Text style={{ ...homeStyles.bottomSheetSubText }}>
+                            Removes 2 Wanted Options.
+                        </Text>
+                        <TouchableOpacity
+                            style={{ ...homeStyles.startButton }}
+                            onPress={() => {
+                                navigation.navigate('QuizScreen')
+                                bottomsheetRef.current.close()
+                            }}
+                        >
+                            <Text style={{ ...homeStyles.startText }}>
+                                Start
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </Modalize>
                 <View style={homeStyles.fifthBlock}>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <Text style={homeStyles.shareText}>
@@ -181,7 +260,6 @@ const HomePage = ({ navigation }) => {
                         </Text>
                     </TouchableOpacity>
                 </View>
-                {/* <BarGraph /> */}
             </View>
         </ScrollView>
     )

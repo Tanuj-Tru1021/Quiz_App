@@ -34,7 +34,7 @@ const Header = ({ onPress }) => (
 const AllQuizes = ({ navigation }) => {
     return (
         <>
-            <Header onPress={() => navigation.goBack()} />
+            <Header onPress={() => navigation.navigate('HomePage')} />
             <Tab.Navigator
                 screenOptions={{
                     labelStyle: { fontSize: 14, fontWeight: 500 },

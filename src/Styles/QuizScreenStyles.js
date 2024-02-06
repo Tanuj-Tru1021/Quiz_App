@@ -68,7 +68,6 @@ const quizScreenStyles = StyleSheet.create({
     },
     nextButton: {
         paddingVertical: 10, width: '70%',
-        backgroundColor: disable ? '#222336' : 'grey',
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',

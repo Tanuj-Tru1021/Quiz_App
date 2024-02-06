@@ -144,7 +144,6 @@ const leaderboardStyles = StyleSheet.create({
     imageKaran: {
         width: 45,
         height: 45,
-        marginRight: 45
     },
     karanText: {
         fontSize: 12,

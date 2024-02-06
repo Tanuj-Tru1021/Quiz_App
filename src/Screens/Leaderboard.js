@@ -172,7 +172,7 @@ const Leaderboard = ({ navigation }) => {
                     indicatorStyle: { borderBottomColor: '#374259', borderBottomWidth: 4 },
                     activeTintColor: '#374259',
                     inactiveTintColor: 'grey',
-                    tabBarStyle: { borderBottomLeftRadius: 10, borderBottomRightRadius: 10, marginTop: 12 }
+                    tabBarStyle: { borderBottomLeftRadius: 10, borderBottomRightRadius: 10, paddingTop: 20 }
                 }}
             >
                 <Tab.Screen name="All Time" component={AllTime} />

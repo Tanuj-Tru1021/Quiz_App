@@ -4,7 +4,7 @@ import ratingStar from '../../assets/rating-star.png'
 import OptionsCard from '../Components/OptionsCard';
 import { quizScreenStyles } from '../Styles/QuizScreenStyles';
 
-const QuizScreen = () => {
+const QuizScreen = ({ navigation }) => {
 
     const [timeLeft, setTimeLeft] = useState(59);
     const [disable, setDisable] = useState(false)
@@ -55,7 +55,7 @@ const QuizScreen = () => {
     ]
 
     return (
-        <View style={quizScreenStyles.quizContainer} >
+        <View style={{ ...quizScreenStyles.quizContainer }}>
             <View>
                 <View style={quizScreenStyles.headingContainer}>
                     <Text style={quizScreenStyles.heading}>
@@ -99,8 +99,9 @@ const QuizScreen = () => {
                     )}
                     ListFooterComponent={() => (
                         <TouchableOpacity
-                            style={quizScreenStyles.nextButton}
+                            style={{ ...quizScreenStyles.nextButton, backgroundColor: disable ? '#222336' : 'grey', }}
                             disabled={disable ? false : true}
+                            onPress={() => navigation.navigate('Result')}
                         >
                             <Text style={quizScreenStyles.nextText}>
                                 Next
