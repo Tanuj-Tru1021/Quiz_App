@@ -14,11 +14,11 @@ const LoginConfirmation = ({ navigation }) => {
             if(enrollNumber.length !== 9) {
                 alert('Enrollment Number should be 9 digits long.')
             } else {
-                navigation.navigate('HomePage')
+                navigation.navigate('ProfilePicture')
                 setEnrollNumber('')
             }
         } else {
-            navigation.navigate('HomePage')
+            navigation.navigate('ProfilePicture')
         }
     }
     return (
@@ -43,7 +43,7 @@ const LoginConfirmation = ({ navigation }) => {
                     <TouchableOpacity
                         style={{ paddingHorizontal: 20, paddingVertical: 14, backgroundColor: selectNo ? '#6A89CC' : 'white', borderRadius: 5 }}
                         onPress={() => {
-                            navigation.navigate('HomePage')
+                            navigation.navigate('ProfilePicture')
                             setSelectNo(!selectNo)
                         }}
                     >

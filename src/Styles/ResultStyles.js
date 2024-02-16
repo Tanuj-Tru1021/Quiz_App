@@ -30,14 +30,14 @@ const resultStyles = StyleSheet.create({
         marginTop: 10
     },
     congratsText: {
-        fontSize: 38,
+        fontSize: 35,
         fontWeight: 600,
         color: '#ffffff',
         marginVertical: 15
     },
     congratsSubText: {
-        fontSize: 22,
-        fontWeight: 300,
+        fontSize: 16,
+        fontWeight: 600,
         color: '#EDC987',
     },
     pointsView: {

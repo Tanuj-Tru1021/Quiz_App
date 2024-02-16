@@ -14,6 +14,7 @@ import Leaderboard from './Screens/Leaderboard'
 import { QuestionProvider } from './Constants/ApiContext'
 import Result from './Screens/Result'
 import ProfileScreen from './Screens/ProfileScreen'
+import ProfilePic from './Screens/ProfilePic'
 
 const Stack = createStackNavigator()
 
@@ -36,6 +37,7 @@ const Navigator = () => {
                     <Stack.Screen name='Leaderboard' component={Leaderboard} />
                     <Stack.Screen name='Result' component={Result} />
                     <Stack.Screen name='ProfileScreen' component={ProfileScreen} />
+                    <Stack.Screen name='ProfilePicture' component={ProfilePic} />
                 </Stack.Navigator>
             </NavigationContainer>
         </QuestionProvider>

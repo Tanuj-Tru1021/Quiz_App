@@ -11,7 +11,7 @@ const ProfileScreen = ({ navigation }) => {
     return (
         <View style={{ backgroundColor: '#F5F5F5', flex: 1 }}>
             <View style={{ backgroundColor: '#FFFFFF', padding: 16, borderBottomLeftRadius: 10, borderBottomRightRadius: 10 }}>
-                <Header onPress={() => navigation.goback()} />
+                <Header onPress={() => navigation.navigate('HomePage')} />
                 <View style={{ alignItems: 'center' }}>
                     <Image source={ProfilePicture} style={{ height: 85, width: 85, borderRadius: 42.5, borderWidth: 3.5, borderColor: '#374259' }} />
                     <Text style={{ marginVertical: 7, fontSize: 14, fontWeight: 500, color: '#374259' }}>
