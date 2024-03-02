@@ -1,6 +1,5 @@
-import { View, Text, ImageBackground, Image, TouchableOpacity, TextInput, ScrollView, NativeModules } from 'react-native'
+import { View, Text, Image, TouchableOpacity, TextInput, ScrollView } from 'react-native'
 import React, { useState } from 'react'
-import backgroundImage from '../../assets/splash-screen.png'
 import headerImage from '../../assets/header-image.png'
 import { RenderError, reg } from '../Constants/Util'
 import CourseComponent from '../Components/CourseComponent'

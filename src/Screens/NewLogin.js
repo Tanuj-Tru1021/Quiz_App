@@ -98,7 +98,7 @@ const NewLogin = ({ navigation }) => {
                     alignSelf: 'center', borderRadius: 10, marginTop: 80
                 }}
                 onPress={() => {
-                    navigation.navigate('LoginConfirmation')
+                    signUpUser()
                 }}
                 disabled={disable}
             >
