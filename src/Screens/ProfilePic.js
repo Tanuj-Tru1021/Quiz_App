@@ -22,6 +22,7 @@ const ProfilePic = ({ navigation }) => {
             console.log("Image Picker cannot be openned: ", error)
         }
     }
+    const disable = selectedImage ? false : true
     return (
         <View style={{ flex: 1, backgroundColor: '#374259' }}>
             <Image source={headerImage} style={{ alignSelf: 'flex-end', position: 'absolute', right: -50, top: -25 }} />
@@ -52,6 +53,23 @@ const ProfilePic = ({ navigation }) => {
                     }
                 </TouchableOpacity>
             </View>
+            <TouchableOpacity
+                style={{
+                    paddingVertical: 15, width: '60%',
+                    justifyContent: 'center', alignItems: 'center',
+                    position: 'absolute', bottom: 85,
+                    backgroundColor: disable ? '#C4C4C4' : '#6989CC',
+                    alignSelf: 'center', borderRadius: 10
+                }}
+                onPress={() => {
+                    navigation.navigate('HomePage')
+                }}
+                disabled={disable}
+            >
+                <Text style={{ fontSize: 16, fontWeight: 500, color: 'white' }}>
+                    Continue
+                </Text>
+            </TouchableOpacity>
         </View>
     )
 }

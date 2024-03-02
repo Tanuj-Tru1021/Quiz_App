@@ -53,6 +53,7 @@ const HomePage = ({ navigation }) => {
                         <View style={homeStyles.insideView1}>
                             <Text style={homeStyles.beginnerText}>
                                 Beginner
+                                
                             </Text>
                             <View style={{ flexDirection: 'row', paddingTop: 10 }}>
                                 <Text style={homeStyles.Text500}>

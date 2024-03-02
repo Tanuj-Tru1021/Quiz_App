@@ -5,7 +5,7 @@ import { splashStyles } from '../Styles/SplashStyles'
 
 const Splash = ({ navigation }) => {
     const handle = () => {
-        navigation.navigate('LoginMobile')
+        navigation.navigate('Login')
     }
     return (
         <View style={{ flex: 1 }}>

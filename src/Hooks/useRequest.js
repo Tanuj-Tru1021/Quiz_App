@@ -1,8 +1,8 @@
 import axios from "axios";
-// import { BASE_URL } from "../constants/Util";
 
 export default () => {
     const makeRequest = async ({ endPoint, method, body, headers, onSuccess, onError }) => {
+        const BASE_URL = 'http://yesquiz-stage.eba-gwufjrqj.ap-south-1.elasticbeanstalk.com/api/v1'
         try {
             const request = {
                 method: method,

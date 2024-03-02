@@ -16,9 +16,7 @@ export const QuestionProvider = ({ children }) => {
         try {
             const url = 'http://quiz-app-dev-env.eba-fvnk6fkv.ap-south-1.elasticbeanstalk.com/api/v1//quiz/659dcce9592b8846dbe81b27/6575effc13906711ea001bed'
             const response = await axios.get(url)
-            console.log("yesssssssss")
             setQuestions(response.data)
-            console.log(questions)
         } catch (error) {
             console.error('Error fetching API data', error)
         }
@@ -42,20 +40,20 @@ export const QuestionProvider = ({ children }) => {
     //         });
     // }, []);
 
-    // useEffect(() => {
-    //     // Decrease the timer every second
-    //     const countdown = setInterval(() => {
-    //         setTimer(prevTimer => (prevTimer > 0 ? prevTimer - 1 : 0));
-    //     }, 1000);
+    useEffect(() => {
+        // Decrease the timer every second
+        const countdown = setInterval(() => {
+            setTimer(prevTimer => (prevTimer > 0 ? prevTimer - 1 : 0));
+        }, 1000);
 
-    //     // Move to the next question when the timer reaches 0
-    //     if (timer === 0) {
-    //         handleNextQuestion();
-    //     }
+        // Move to the next question when the timer reaches 0
+        if (timer === 0) {
+            handleNextQuestion();
+        }
 
-    //     // Clear the interval on component unmount or when timer reaches 0
-    //     return () => clearInterval(countdown);
-    // }, [timer]);
+        // Clear the interval on component unmount or when timer reaches 0
+        return () => clearInterval(countdown);
+    }, [timer]);
 
     const handleOptionSelection = (selectedOptionId) => {
         const currentQuestion = questions[currentQuestionIndex];
