@@ -6,16 +6,18 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import headerImage from '../../assets/header-image.png';
-import {RenderError, reg} from '../Constants/Util';
+import { RenderError, reg } from '../Constants/Util';
 import useRequest from '../Hooks/useRequest';
-import {login} from '../Services/Auth';
+import { login } from '../Services/Auth';
+import Ionicon from 'react-native-vector-icons/Ionicons'
 
-const Login = ({navigation}) => {
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState({});
+  const [hidePassword, setHidePassword] = useState(true)
   const disable = !reg.test(email);
 
   const loginUser = async () => {
@@ -34,13 +36,13 @@ const Login = ({navigation}) => {
   };
 
   return (
-    <ScrollView style={{flex: 1, backgroundColor: '#374259'}}>
+    <ScrollView style={{ flex: 1, backgroundColor: '#374259' }}>
       <Image
         source={headerImage}
-        style={{alignSelf: 'flex-end', right: -40, top: -15}}
+        style={{ alignSelf: 'flex-end', right: -40, top: -15 }}
       />
-      <View style={{paddingHorizontal: 20}}>
-        <Text style={{fontSize: 20, fontWeight: 500, color: 'white'}}>
+      <View style={{ paddingHorizontal: 20 }}>
+        <Text style={{ fontSize: 20, fontWeight: 500, color: 'white' }}>
           Login Here
         </Text>
 
@@ -66,7 +68,7 @@ const Login = ({navigation}) => {
           }}
           onChangeText={text => {
             setEmail(text.trim());
-            setError(prev => ({...prev, email: !text}));
+            setError(prev => ({ ...prev, email: !text }));
           }}
           keyboardType="email-address"
         />
@@ -84,23 +86,37 @@ const Login = ({navigation}) => {
           }}>
           Your Password
         </Text>
-        <TextInput
-          autoCapitalize="none"
-          placeholder="Enter your new password here"
-          style={{
-            backgroundColor: 'white',
-            borderRadius: 6,
-            paddingHorizontal: 16,
-            width: '100%',
-            marginTop: 11,
-            height: 45,
-          }}
-          onChangeText={text => {
-            setPassword(text.trim());
-            setError(prev => ({...prev, password: !text}));
-          }}
-          keyboardType="email-address"
-        />
+        <View>
+          <TextInput
+            autoCapitalize="none"
+            secureTextEntry={hidePassword}
+            placeholder="Enter your new password here"
+            style={{
+              backgroundColor: 'white',
+              borderRadius: 6,
+              paddingLeft: 16,
+              paddingRight: 40,
+              width: '100%',
+              marginTop: 11,
+              height: 45,
+              position: 'relative'
+            }}
+            onChangeText={text => {
+              setPassword(text.trim());
+              setError(prev => ({ ...prev, password: !text }));
+            }}
+          />
+          <TouchableOpacity
+            style={{ position: 'absolute', right: 10, top: 20 }}
+            onPress={() => setHidePassword(!hidePassword)}
+          >
+            {
+              hidePassword
+                ? <Ionicon name='eye-outline' size={24} />
+                : <Ionicon name='eye-off-outline' size={24} />
+            }
+          </TouchableOpacity>
+        </View>
         {error.password && <RenderError message="Enter your password" />}
       </View>
 
@@ -116,10 +132,12 @@ const Login = ({navigation}) => {
           marginTop: 80,
         }}
         onPress={() => {
-          loginUser();
+          loginUser()
+          setEmail('')
+          setPassword('')
         }}
         disabled={disable}>
-        <Text style={{fontSize: 16, fontWeight: 500, color: 'white'}}>
+        <Text style={{ fontSize: 16, fontWeight: 500, color: 'white' }}>
           Continue
         </Text>
       </TouchableOpacity>
@@ -134,7 +152,10 @@ const Login = ({navigation}) => {
         }}>
         If you're new here, please create your account
       </Text>
-      <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('SignUp')}
+        style={{ padding: 5, backgroundColor: '#6989CC', width: '20%', alignSelf: 'center', marginTop: 5, borderRadius: 8 }}
+      >
         <Text
           style={{
             fontSize: 12,

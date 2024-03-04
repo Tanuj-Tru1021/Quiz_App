@@ -9,11 +9,13 @@ const QuizScreen = ({ navigation }) => {
 
     const [timeLeft, setTimeLeft] = useState(59);
     const [disable, setDisable] = useState(false)
-    const { getCurrentQuestion, getCurrentOptions, handleNextQuestion, currentQuestionIndex, questions } = useContext(QuestionContext)
+    const { getCurrentQuestion, getCurrentOptions, handleNextQuestion, currentQuestionIndex, questions, setCorrectAnswer } = useContext(QuestionContext)
 
     onPressOption = () => {
         // handleOptionSelection(index)
+        // setCorrectAnswer()
         setDisable(true)
+        console.log(questions[currentQuestionIndex])
     }
 
     const startTimer = () => {
@@ -86,7 +88,7 @@ const QuizScreen = ({ navigation }) => {
                         </Text>
                     </View>
                     <Text style={quizScreenStyles.questionNumber}>
-                        Question - 1/64
+                        {currentQuestionIndex+1} / 
                     </Text>
                     <Text style={quizScreenStyles.questionText}>
                         {getCurrentQuestion()}
@@ -105,7 +107,7 @@ const QuizScreen = ({ navigation }) => {
                             disabled={disable}
                             questionIndex={currentQuestionIndex}
                         />
-                    )}
+                    )} 
                     ListFooterComponent={() => (
                         <TouchableOpacity
                             style={{ ...quizScreenStyles.nextButton, backgroundColor: disable ? '#222336' : 'grey', }}

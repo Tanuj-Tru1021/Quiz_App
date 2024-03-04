@@ -14,30 +14,32 @@ export const QuestionProvider = ({ children }) => {
     const [score, setScore] = useState(0);
     const [timer, setTimer] = useState(59);
 
-    const fetchData = async () => {
-        try {
-            const token = await AsyncStorage.getItem('token')
-            const url = 'http://yesquiz-stage.eba-gwufjrqj.ap-south-1.elasticbeanstalk.com/api/v1/quiz'
-            const response = await axios.get(url,{
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
+    // const fetchData = async () => {
+    //     try {
+    //         const token = await AsyncStorage.getItem('token')
+    //         const url = 'http://yesquiz-stage.eba-gwufjrqj.ap-south-1.elasticbeanstalk.com/api/v1/quiz'
+    //         const response = await axios.get(url,{
+    //             headers: {
+    //                 'Authorization': `Bearer ${token}`
+    //             }
 
-            })
-            const extractedQuestions = Object.values(response.data[0].quiz).flatMap(
-                subjectQuestions => subjectQuestions.map(
-                  questionObj => ({ options: questionObj.options, question: questionObj.question })
-                )
-              );
-            setQuestions(extractedQuestions)
-        } catch (error) {
-            console.error('Error fetching API data', error)
-        }
-    }
+    //         })
+    //         console.log(response.data[0].quiz)
+    //         const extractedQuestions = Object.values(response.data[0].quiz).flatMap(
+    //             subjectQuestions => subjectQuestions.map(
+    //               questionObj => ({ options: questionObj.options, question: questionObj.question })
+    //             )
+    //           );
+    //         setQuestions(extractedQuestions)
+    //         // console.log(questions);
+    //     } catch (error) {
+    //         console.error('Error fetching API data', error)
+    //     }
+    // }
 
-    useEffect(() => {
-        fetchData()
-    }, [])
+    // useEffect(() => {
+    //     fetchData()
+    // }, [])
 
     // useEffect(() => {
     //     // Fetch data from the API when the component mounts
@@ -101,22 +103,37 @@ export const QuestionProvider = ({ children }) => {
     const getCurrentQuestion = () => {
         return questions[currentQuestionIndex].question
     };
-    
+
     const getCurrentOptions = () => {
         return questions[currentQuestionIndex].options
     }
+
+    const setCorrectAnswer = () => {
+        const newQuestions = [...questions,
+            {
+                ...questions[currentQuestionIndex],
+                'answer': 'option1',
+            },
+            ...questions.slice(currentQuestionIndex + 1),]
+            setQuestions(newQuestions)
+    }
+ 
+    // setQuestions(newQuestions)
+
 
     return (
         <QuestionContext.Provider
             value={{
                 questions,
+                setQuestions,
                 currentQuestionIndex,
                 score,
                 timer,
                 handleRemoveOptions,
                 getCurrentQuestion,
                 getCurrentOptions,
-                handleNextQuestion
+                handleNextQuestion,
+                setCorrectAnswer
             }}
         >
             {children}
