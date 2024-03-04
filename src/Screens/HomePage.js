@@ -27,41 +27,49 @@ const HomePage = ({ navigation }) => {
   };
   const fetchData = async () => {
     try {
-      const token = await AsyncStorage.getItem('token')
-      const url = 'http://yesquiz-stage.eba-gwufjrqj.ap-south-1.elasticbeanstalk.com/api/v1/quiz'
+      const token = await AsyncStorage.getItem('token');
+      //   console.log(token);
+      const url =
+        'http://yesquiz-stage.eba-gwufjrqj.ap-south-1.elasticbeanstalk.com/api/v1/quiz';
       const response = await axios.get(url, {
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.data) {
+        console.log(Object.entries(response.data[0].quiz));
+      }
 
-      })
-      // console.log(response.data[0].quiz['Business Communication'])
-      const extractedQuestions = Object.values(response.data[0].quiz).flatMap(
-        subjectQuestions => subjectQuestions.map(
-          questionObj => ({ options: questionObj.options, question: questionObj.question })
-        )
+      const extractedQuestions = Object.entries(response.data[0].quiz).flatMap(
+        subjectQuestions => {
+          return subjectQuestions[1].map(questionObj => ({
+            //save Object keys as array
+            key: subjectQuestions[0],
+            answer: '',
+            options: questionObj.options,
+            question: questionObj.question,
+          }));
+        },
+        //   subjectQuestions.map(questionObj => ({
+        //     //save Object keys as array
+
+        //     answer: '',
+        //     options: questionObj.options,
+        //     question: questionObj.question,
+        //   })),
       );
-      const newArray = extractedQuestions.map((element) => ({
-        ...element,
-        'answer': `option1`,
-      }))
-      // console.log(newArray[0].answer)
-      setQuestions(extractedQuestions)
-      // console.log(questions);
+      console.log(extractedQuestions);
+      setQuestions(extractedQuestions);
     } catch (error) {
-      console.error('Error fetching API data', error)
+      console.error('Error fetching API data', error);
     }
-  }
-
-  const flag = false
-
-
-  // console.log(newQuestions)
+  };
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
+  const flag = false
   // console.log(questions, 'questionssssssssssss')
 
   return (
