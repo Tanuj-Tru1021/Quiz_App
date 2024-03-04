@@ -13,6 +13,7 @@ const QuizScreen = ({ navigation }) => {
     const [randOption1, setRandOption1] = useState()
     const [randOption2, setRandOption2] = useState()
     const [fiftyFifty, setFiftyFifty] = useState(false)
+    const [disableFifty, setDisableFifty] = useState(false)
     const {
         getCurrentQuestion,
         getCurrentOptions,
@@ -20,6 +21,7 @@ const QuizScreen = ({ navigation }) => {
         currentQuestionIndex,
         questions,
         setCorrectOption,
+        quizName
     } = useContext(QuestionContext);
 
     const onPressOption = value => {
@@ -29,6 +31,7 @@ const QuizScreen = ({ navigation }) => {
     };
     const onPress50 = () => {
         setFiftyFifty(true)
+        setDisableFifty(true)
         setRandOption1(Math.floor(Math.random() * 4))
         setRandOption2(Math.floor(Math.random() * 4))
     }
@@ -45,7 +48,7 @@ const QuizScreen = ({ navigation }) => {
         }
         console.log(quizData);
     };
-    // console.log(questions[currentQuestionIndex].options[0])
+    // console.log(questions)
 
     const startTimer = () => {
         timer = setTimeout(() => {
@@ -99,7 +102,7 @@ const QuizScreen = ({ navigation }) => {
         <View style={{ ...quizScreenStyles.quizContainer }}>
             <View>
                 <View style={quizScreenStyles.headingContainer}>
-                    <Text style={quizScreenStyles.heading}>Sciences Quiz 1</Text>
+                    <Text style={quizScreenStyles.heading}>{quizName}</Text>
                     <View style={quizScreenStyles.currentScoreContainer}>
                         <Image source={ratingStar} style={{ width: 17, height: 17 }} />
                         <Text style={quizScreenStyles.currentScore}>00</Text>
@@ -109,7 +112,9 @@ const QuizScreen = ({ navigation }) => {
                     <View style={quizScreenStyles.timerContainer}>
                         <Text style={quizScreenStyles.timer}>00:{timeLeft}</Text>
                     </View>
-                    <Text style={quizScreenStyles.questionNumber}>Question - 1/64</Text>
+                    <Text style={quizScreenStyles.questionNumber}>
+                        Question - {currentQuestionIndex+1} / {questions.length}
+                    </Text>
                     <Text style={quizScreenStyles.questionText}>
                         {getCurrentQuestion()}
                     </Text>
@@ -139,7 +144,7 @@ const QuizScreen = ({ navigation }) => {
                 <TouchableOpacity style={{
                     width: 70,
                     height: 70,
-                    backgroundColor: fiftyFifty ? '#0000001A' : '#6EDBA9',
+                    backgroundColor: disableFifty ? '#0000001A' : '#6EDBA9',
                     justifyContent: 'center',
                     alignItems: 'center',
                     transform: [{ rotate: '45deg' }],
@@ -151,7 +156,7 @@ const QuizScreen = ({ navigation }) => {
                     elevation: 10
                 }}
                     onPress={onPress50}
-                    disabled={fiftyFifty}
+                    disabled={disableFifty}
                 >
                     <Text style={{
                         fontSize: 20,

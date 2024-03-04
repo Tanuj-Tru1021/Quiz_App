@@ -13,6 +13,7 @@ export const QuestionProvider = ({children}) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(59);
+  const [quizName, setQuizName] = useState('')
 
   // const fetchData = async () => {
   //   try {
@@ -142,6 +143,8 @@ export const QuestionProvider = ({children}) => {
         getCurrentOptions,
         handleNextQuestion,
         setCorrectOption,
+        quizName,
+        setQuizName
       }}>
       {children}
     </QuestionContext.Provider>

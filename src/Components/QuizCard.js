@@ -4,7 +4,7 @@ import { Modalize } from 'react-native-modalize'
 import ratingStar from '../../assets/rating-star.png'
 import Science from '../../assets/science-image.png'
 
-const QuizCard = ({ onPress, title, createdAt }) => {
+const QuizCard = ({ onPress, title, createdAt, questionNumber }) => {
 
     const modalRef = useRef(null)
 
@@ -45,7 +45,7 @@ const QuizCard = ({ onPress, title, createdAt }) => {
                     />
                     <View style={{ marginTop: 12 }}>
                         <Text style={{ fontSize: 10, fontWeight: 400 }}>
-                            Question - 60
+                            Question - {questionNumber}
                         </Text>
                         <Text style={{ fontSize: 10, fontWeight: 400 }}>
                             {createdAt}

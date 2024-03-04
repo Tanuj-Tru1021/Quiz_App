@@ -18,7 +18,7 @@ import Ionicon from 'react-native-vector-icons/Ionicons'
 const HomePage = ({ navigation }) => {
   const [data, setData] = useState({});
   const bottomsheetRef = useRef(null);
-  const { questions, setQuestions, currentQuestionIndex } = useContext(QuestionContext)
+  const { questions, setQuestions, currentQuestionIndex, setQuizName, quizName } = useContext(QuestionContext)
   // console.log(await AsyncStorage.getItem('token'));
   const onOpen = () => {
     if (bottomsheetRef.current) {
@@ -36,9 +36,10 @@ const HomePage = ({ navigation }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      if (response.data) {
-        console.log(Object.entries(response.data[0].quiz));
-      }
+      setQuizName(response.data[0].name)
+      // if (response.data) {
+      //   console.log(Object.entries(response.data[0].quiz));
+      // }
 
       const extractedQuestions = Object.entries(response.data[0].quiz).flatMap(
         subjectQuestions => {
@@ -58,12 +59,13 @@ const HomePage = ({ navigation }) => {
         //     question: questionObj.question,
         //   })),
       );
-      console.log(extractedQuestions);
+      // console.log(extractedQuestions);
       setQuestions(extractedQuestions);
     } catch (error) {
       console.error('Error fetching API data', error);
     }
   };
+  // console.log(questions.length)
 
   useEffect(() => {
     fetchData();
@@ -191,7 +193,7 @@ const HomePage = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <QuizCard onPress={onOpen} title={'Quiz 1'} />
+        <QuizCard onPress={onOpen} title={quizName} questionNumber={questions.length} />
 
         <Modalize
           ref={bottomsheetRef}
