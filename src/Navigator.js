@@ -33,12 +33,14 @@ const Navigator = () => {
                     {/* <Stack.Screen name='LoginOTP' component={LoginOTP} /> */}
                     <Stack.Screen name='Login' component={Login} />
                     {/* <Stack.Screen name='LoginConfirmation' component={LoginConfirmation} /> */}
+
                     <Stack.Screen name='HomePage' component={HomePage} />
                     <Stack.Screen name='AllQuizes' component={AllQuizes} />
                     <Stack.Screen name='QuizScreen' component={QuizScreen} />
                     <Stack.Screen name='Leaderboard' component={Leaderboard} />
                     <Stack.Screen name='Result' component={Result} />
                     <Stack.Screen name='ProfileScreen' component={ProfileScreen} />
+
                     {/* <Stack.Screen name='ProfilePicture' component={ProfilePic} /> */}
                     <Stack.Screen name='SignUp' component={SignUp} />
                     <Stack.Screen name='NewLogin' component={NewLogin} />

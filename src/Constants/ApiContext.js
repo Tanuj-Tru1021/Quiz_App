@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const QuestionContext = createContext();
 
@@ -8,15 +9,27 @@ export const QuestionProvider = ({ children }) => {
     //   const navigation = useNavigation(); // React Navigation hook for navigation
 
     const [questions, setQuestions] = useState([]);
+    const [selectedOptions, setSelectedOptions] = ([])
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [score, setScore] = useState(0);
     const [timer, setTimer] = useState(59);
 
     const fetchData = async () => {
         try {
-            const url = 'http://quiz-app-dev-env.eba-fvnk6fkv.ap-south-1.elasticbeanstalk.com/api/v1//quiz/659dcce9592b8846dbe81b27/6575effc13906711ea001bed'
-            const response = await axios.get(url)
-            setQuestions(response.data)
+            const token = await AsyncStorage.getItem('token')
+            const url = 'http://yesquiz-stage.eba-gwufjrqj.ap-south-1.elasticbeanstalk.com/api/v1/quiz'
+            const response = await axios.get(url,{
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+
+            })
+            const extractedQuestions = Object.values(response.data[0].quiz).flatMap(
+                subjectQuestions => subjectQuestions.map(
+                  questionObj => ({ options: questionObj.options, question: questionObj.question })
+                )
+              );
+            setQuestions(extractedQuestions)
         } catch (error) {
             console.error('Error fetching API data', error)
         }
@@ -39,35 +52,31 @@ export const QuestionProvider = ({ children }) => {
     //             console.error('Error fetching data:', error);
     //         });
     // }, []);
+    // console.log(questions[0]);
 
-    useEffect(() => {
-        // Decrease the timer every second
-        const countdown = setInterval(() => {
-            setTimer(prevTimer => (prevTimer > 0 ? prevTimer - 1 : 0));
-        }, 1000);
+    // useEffect(() => {
+    //     // Decrease the timer every second
+    //     const countdown = setInterval(() => {
+    //         setTimer(prevTimer => (prevTimer > 0 ? prevTimer - 1 : 0));
+    //     }, 1000);
 
-        // Move to the next question when the timer reaches 0
-        if (timer === 0) {
-            handleNextQuestion();
-        }
+    //     // Move to the next question when the timer reaches 0
+    //     if (timer === 0) {
+    //         handleNextQuestion();
+    //     }
 
-        // Clear the interval on component unmount or when timer reaches 0
-        return () => clearInterval(countdown);
-    }, [timer]);
+    //     // Clear the interval on component unmount or when timer reaches 0
+    //     return () => clearInterval(countdown);
+    // }, [timer]);
 
-    const handleOptionSelection = (selectedOptionId) => {
-        const currentQuestion = questions[currentQuestionIndex];
-        const correctOptionId = currentQuestion.correctOptionId;
-
-        if (selectedOptionId === correctOptionId) {
-            setScore(prevScore => prevScore + 3); // Increase score by 3 for correct answer
-        }
-
-        handleNextQuestion();
-    };
+    // console.log(questions)
+    // const handleOptionSelection = (selectedOptionId) => {
+    //     setSelectedOptions(prev => ({ ...prev, currentQuestionIndex: selectedOptionId}))
+    // };
 
     const handleNextQuestion = () => {
-        setCurrentQuestionIndex(prevIndex => prevIndex + 1);
+        // return questions[currentQuestionIndex + 1].question
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
         setTimer(59); // Reset the timer to 59 seconds for the next question
     };
 
@@ -90,8 +99,12 @@ export const QuestionProvider = ({ children }) => {
     };
 
     const getCurrentQuestion = () => {
-        return questions[currentQuestionIndex];
+        return questions[currentQuestionIndex].question
     };
+    
+    const getCurrentOptions = () => {
+        return questions[currentQuestionIndex].options
+    }
 
     return (
         <QuestionContext.Provider
@@ -100,9 +113,10 @@ export const QuestionProvider = ({ children }) => {
                 currentQuestionIndex,
                 score,
                 timer,
-                handleOptionSelection,
                 handleRemoveOptions,
-                getCurrentQuestion
+                getCurrentQuestion,
+                getCurrentOptions,
+                handleNextQuestion
             }}
         >
             {children}
